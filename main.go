@@ -2,11 +2,12 @@ package main
 
 import (
 	"embed"
-	"github.com/maddalax/htmgo/framework/h"
-	"github.com/maddalax/htmgo/framework/service"
 	"io/fs"
 	"net/http"
 	"todo/__htmgo"
+
+	"github.com/maddalax/htmgo/framework/h"
+	"github.com/maddalax/htmgo/framework/service"
 )
 
 //go:embed assets/dist/*
