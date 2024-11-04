@@ -2,20 +2,29 @@ package pages
 
 import (
 	"github.com/maddalax/htmgo/framework/h"
-	"todo/partials"
 )
 
 func IndexPage(ctx *h.RequestContext) *h.Page {
-	return h.NewPage(
+	tasks_details := []string{"Do the laundry", "Do the dishes"}
+
+	tasks := h.List(tasks_details, func(item string, index int) *h.Element {
+		return h.Tr(h.Td(h.Text(item)), h.Td(h.Button(h.Text("Save"))))
+	})
+
+	page := h.NewPage(
 		RootPage(
-			h.Div(
-				h.Class("flex flex-col gap-4 items-center pt-24 min-h-screen bg-neutral-100"),
-				h.H3(h.Id("intro-text"), h.Text("hello htmgo"), h.Class("text-5xl")),
-				h.Div(
-					h.Class("mt-3"),
-					partials.CounterForm(0),
+			h.Table(
+				h.Tr(
+					h.Th(
+						h.Text("Task"),
+					),
+					h.Th(
+						h.Text("Save"),
+					),
 				),
+				h.Tr(tasks),
 			),
 		),
 	)
+	return page
 }
